@@ -1,0 +1,18 @@
+.jogador--item {
+    color: #fff;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 48%;
+    margin-left: 1%;
+}
+
+.jogador--imagem {
+    width: 80px;
+}
+
+.jogador--descricao {
+    margin-bottom: 0;
+    margin-top: .5rem;
+    margin-left: 1rem;
+}

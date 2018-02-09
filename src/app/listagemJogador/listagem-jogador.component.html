@@ -1,0 +1,16 @@
+<cabecalho></cabecalho>
+
+
+<section class="bg-dark p-5">
+    <div class="container d-flex flex-wrap">
+        <div *ngFor="let jogador of jogadores" class="jogador--item d-flex">
+            <div class="jogador--imagem">
+                <img src="assets/images/stormtrooper.png" />
+            </div>
+            <div>
+                <p class="jogador--descricao">Nome: {{jogador.nome}}</p>
+                <p class="jogador--descricao">Pontuaçao: {{jogador.pontuacao}}</p>
+            </div>
+        </div>
+    </div>
+</section>

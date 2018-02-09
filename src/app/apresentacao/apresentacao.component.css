@@ -1,0 +1,42 @@
+
+.apresentacao {
+    max-width: 500px;
+    text-align: center;
+}
+
+.apresentacao--titulo {
+    font-size: 5rem;
+}
+
+.descricao {
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+
+.descricao--imagem {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.descricao-detalhes {
+    flex: 1;
+}
+
+@media(min-width: 800px) {
+    .descricao {
+        flex-direction: row;
+        text-align: inherit;
+        align-items: center;
+        justify-content: inherit;
+    }
+
+    .descricao--imagem {
+        max-width: 300px;
+    }
+
+    .descricao-detalhes {
+        margin-left: 20px;
+    }
+}
+

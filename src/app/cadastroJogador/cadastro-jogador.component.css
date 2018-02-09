@@ -1,0 +1,23 @@
+.descricao {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.pontuacao {
+    font-size: 2rem;
+}
+
+label {
+    width: 70px;
+    text-align: right;
+}
+
+.input {
+    width: 200px;
+}
+
+.fields {
+    text-align: center;
+    margin-bottom: 10px;
+}
