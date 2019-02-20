@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import { JogadorComponent } from './jogador.component';
+import { IJogador } from '../models';
 
 @Injectable()
 export class JogadorService {
     storage = localStorage;
     
-    salvar(jogador: JogadorComponent) {
+    salvar(jogador: IJogador) {
         let listaJogadores = this.listar();
         listaJogadores.push(jogador);
         this.storage.setItem("jogadores", JSON.stringify(listaJogadores));
     }
 
-    listar() : JogadorComponent[] {
+    listar() : IJogador[] {
         let jogadores = []; 
         let jogadoresString = this.storage.getItem("jogadores");
         if (jogadoresString) jogadores = JSON.parse(jogadoresString);

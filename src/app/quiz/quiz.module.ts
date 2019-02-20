@@ -1,22 +1,28 @@
-import { Routing } from '../app.routes'
+import { FormsModule } from '@angular/forms';
+import { ListagemComponent } from './listagem/listagem.component';
+import { ModalModule } from './../shared/components/modal/modal.module';
+import { CadastroJogadorComponent } from './../cadastro-jogador/cadastro-jogador.component';
 
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { CabecalhoModule } from './../shared/components';
 import { QuizComponent } from './quiz.component';
-import { PersonagemModule } from '../personagem/personagem.module';
-import { CadastroJogadorModule } from '../cadastroJogador/cadastro-jogador.module';
-import { CabecalhoModule } from '../cabecalho/cabecalho.module';
+import { JogadorService } from '../shared/services';
 
 @NgModule({
     imports: [ 
         CommonModule,
-        Routing, 
-        PersonagemModule ,
-        CadastroJogadorModule,
         CabecalhoModule,
+        ModalModule,
+        FormsModule,
     ],
-    declarations: [ QuizComponent ],
-    exports: [ QuizComponent ]
+    declarations: [
+        QuizComponent,
+        CadastroJogadorComponent,
+        ListagemComponent
+    ],
+    exports: [ QuizComponent ],
+    providers: [ JogadorService ],
 })
 export class QuizModule { }

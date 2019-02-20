@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { JogadorComponent } from '../jogador/jogador.component';
-import { JogadorService } from '../jogador/jogador.service';
+import { IJogador } from '../shared/models';
+import { JogadorService } from '../shared/services';
 
 @Component({
 	selector: 'listagem-jogador',
@@ -8,10 +8,9 @@ import { JogadorService } from '../jogador/jogador.service';
 	styleUrls: ['./listagem-jogador.component.css']
 })
 export class ListagemJogadorComponent {
-    service: JogadorService;
-    jogadores: JogadorComponent[];
+    jogadores: IJogador[];
 
-   constructor(service: JogadorService) {
+   constructor(private service: JogadorService) {
         this.service = service;
         this.jogadores = this.service.listar();
    }

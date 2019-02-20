@@ -1,10 +1,8 @@
+import { IPersonagem } from './../models';
 
 import {map} from 'rxjs/operators';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { PersonagemComponent } from './personagem.component';
-import { async } from '@angular/core/testing';
 
 @Injectable()
 export class PersonagemService {
@@ -16,11 +14,8 @@ export class PersonagemService {
         this.http = http;
     }
 
-    lista(page: number): Promise<PersonagemComponent[]> {
-        // return this.http
-        // .get(this.url + page)
-        // .map(res => res.json().results);
-        return new Promise<PersonagemComponent[]>(resolve => {
+    lista(page: number): Promise<IPersonagem[]> {
+        return new Promise<IPersonagem[]>(resolve => {
             this.http
                 .get(this.url + page).pipe(
                 map(res => res.json()))

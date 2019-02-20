@@ -12,17 +12,17 @@
         <button class="btn btn-link" (click)="goToPrev()" [disabled]="paginaAtual < 2 || finalizado"><< Previous </button>
         <button class="btn btn-link" (click)="goToNext()" [disabled]="paginaAtual > 3 || finalizado">Next >></button>
     </div>
-    <modal *ngIf="mostrarDica" (fechar)="fecharModal($event)" titulo="Details">
-            <img [src]="pessoaDica.image" alt="Personagem" class="details-img">
-            <p><strong>Specie:</strong> {{pessoaDica.especies}}</p>
-            <p><strong>Height:</strong> {{pessoaDica.height}}</p>
-            <p><strong>Hair:</strong> {{pessoaDica.hair_color}}</p>
-            <p><strong>Planet:</strong> {{pessoaDica.planeta}}</p>
-            <p><strong>Movies:</strong> {{pessoaDica.filmes}}</p>
-            <p><strong>Vehicles:</strong> {{pessoaDica.veiculos}}</p>
-    </modal>
+    <!-- <modal *ngIf="mostrarDica" (fechar)="fecharModal($event)" titulo="Details">
+        <img [src]="pessoaDica.image" alt="Personagem" class="details-img">
+        <p><strong>Specie:</strong> {{pessoaDica.especies}}</p>
+        <p><strong>Height:</strong> {{pessoaDica.height}}</p>
+        <p><strong>Hair:</strong> {{pessoaDica.hair_color}}</p>
+        <p><strong>Planet:</strong> {{pessoaDica.planeta}}</p>
+        <p><strong>Movies:</strong> {{pessoaDica.filmes}}</p>
+        <p><strong>Vehicles:</strong> {{pessoaDica.veiculos}}</p>
+    </modal> -->
 
-    <modal *ngIf="mostrarDadosJogador" (fechar)="fecharModal($event)" titulo="Quiz finalizado!">
+    <!-- <modal *ngIf="mostrarDadosJogador" (fechar)="fecharModal($event)" titulo="Quiz finalizado!">
         <cadastro-jogador [pontuacao]="total" (salvar)="salvarJogador($event)"></cadastro-jogador>
-    </modal>
+    </modal> -->
 </section>

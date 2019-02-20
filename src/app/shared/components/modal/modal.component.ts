@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { PersonagemComponent } from '../personagem/personagem.component';
 
 @Component({
 	selector: 'modal',

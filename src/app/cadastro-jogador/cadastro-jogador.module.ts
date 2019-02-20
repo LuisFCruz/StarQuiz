@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { CadastroJogadorComponent } from './cadastro-jogador.component';
+import { JogadorService } from '../shared/services';
 
 @NgModule({
     imports: [ 
@@ -9,6 +10,6 @@ import { CadastroJogadorComponent } from './cadastro-jogador.component';
     ],
     declarations: [ CadastroJogadorComponent ],
     exports: [ CadastroJogadorComponent ],
-    providers: [ ]
+    providers: [ JogadorService ]
 })
 export class CadastroJogadorModule { }

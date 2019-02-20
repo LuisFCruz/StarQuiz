@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
-import { PersonagemService } from '../personagem/personagem.service';
-import { PersonagemComponent } from '../personagem/personagem.component';
-import { resolve } from 'url';
-import { JogadorService } from '../jogador/jogador.service';
-import { JogadorComponent } from '../jogador/jogador.component';
+import { PersonagemService } from '../shared/services/personagem.service';
+import { IPersonagem } from '../shared/models';
 
 @Component({
 	selector: 'quiz',
@@ -13,13 +10,13 @@ import { JogadorComponent } from '../jogador/jogador.component';
 })
 export class QuizComponent implements OnInit {
 	private service: PersonagemService;
-	private todosPersonagens: PersonagemComponent[] = [];
+	private todosPersonagens: IPersonagem[] = [];
 	paginaAtual: number = 1;
 	paginaInicio: number = 0;
 	paginaFim: number = 10;
 	time: string;
-	personagens: PersonagemComponent[] = [];
-	pessoaDica: PersonagemComponent;
+	personagens: IPersonagem[] = [];
+	pessoaDica: IPersonagem;
 	mostrarDica: boolean = false;
 	mostrarDadosJogador: boolean = false;
 	total: number = 0;
@@ -87,7 +84,7 @@ export class QuizComponent implements OnInit {
 		this.personagens = this.todosPersonagens.slice(indiceInicio, indiceFinal)
 	}
 
-	async abrirDica(pessoa: PersonagemComponent) {
+	async abrirDica(pessoa: IPersonagem) {
 		this.loading = true;
 		await this.buscarComplementos(pessoa);
 		this.pessoaDica = pessoa;
@@ -101,7 +98,7 @@ export class QuizComponent implements OnInit {
 		this.mostrarDadosJogador = value;
 	}
 
-	private async buscarComplementos(pessoa: PersonagemComponent) {
+	private async buscarComplementos(pessoa: IPersonagem) {
 		
 		return new Promise<boolean>(async resolve => {
 			let especies = this.service.complementos(pessoa.species, "name");
