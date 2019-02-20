@@ -10,6 +10,7 @@ import { CabecalhoModule } from './../shared/components';
 import { QuizComponent } from './quiz.component';
 import { JogadorService } from '../shared/services';
 import { TimerModule } from '../shared/components/timer/timer.module';
+import { PaginationModule } from '../shared/components/pagination/pagination.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { TimerModule } from '../shared/components/timer/timer.module';
     CabecalhoModule,
     ModalModule,
     FormsModule,
-    TimerModule
+    TimerModule,
+    PaginationModule,
   ],
   declarations: [QuizComponent, CadastroJogadorComponent, ListagemComponent],
   exports: [QuizComponent],

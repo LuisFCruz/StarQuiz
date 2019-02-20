@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 import { PersonagemService } from '../shared/services/personagem.service';
 import { IPersonagem } from '../shared/models';
 
@@ -14,7 +13,6 @@ export class QuizComponent implements OnInit {
   paginaAtual: number = 1;
   paginaInicio: number = 0;
   paginaFim: number = 10;
-  time: string;
   personagens: IPersonagem[] = [];
   pessoaDica: IPersonagem;
   mostrarDica: boolean = false;
@@ -24,9 +22,10 @@ export class QuizComponent implements OnInit {
   loading: boolean = false;
   durationGame = 120;
 
+  currentPage = 0;
+
   constructor(service: PersonagemService) {
     this.service = service;
-    this.time = '02:00';
   }
 
   get startTimer() {
@@ -47,17 +46,21 @@ export class QuizComponent implements OnInit {
     this.finalizado = true;
   }
 
-  goToPrev() {
-    this.paginaAtual -= 1;
-    this.mostrarPersonagens();
-  }
+  // goToPrev() {
+  //   this.paginaAtual -= 1;
+  //   this.mostrarPersonagens();
+  // }
 
-  goToNext() {
-    this.paginaAtual += 1;
+  // goToNext() {
+  //   this.paginaAtual += 1;
 
-    if (this.todosPersonagens.length <= this.paginaAtual * 10)
-      this.buscarPersonagens();
-    else this.mostrarPersonagens();
+  //   if (this.todosPersonagens.length <= this.paginaAtual * 10)
+  //     this.buscarPersonagens();
+  //   else this.mostrarPersonagens();
+  // }
+
+  pageChange(page: number) {
+    this.currentPage = page;
   }
 
   async buscarPersonagens() {
