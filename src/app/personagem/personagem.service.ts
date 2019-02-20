@@ -1,3 +1,5 @@
+
+import {map} from 'rxjs/operators';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -20,8 +22,8 @@ export class PersonagemService {
         // .map(res => res.json().results);
         return new Promise<PersonagemComponent[]>(resolve => {
             this.http
-                .get(this.url + page)
-                .map(res => res.json())
+                .get(this.url + page).pipe(
+                map(res => res.json()))
                 .subscribe(res => {
 
                     res.results.map(n => {
@@ -54,8 +56,8 @@ export class PersonagemService {
         
         return new Promise<string>(resolve => {
                 this.http
-                    .get(url)
-                    .map(res => res.json())
+                    .get(url).pipe(
+                    map(res => res.json()))
                     .subscribe(n => resolve(n[attr]));
         });
     }
