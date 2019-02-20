@@ -9,20 +9,18 @@ import { CommonModule } from '@angular/common';
 import { CabecalhoModule } from './../shared/components';
 import { QuizComponent } from './quiz.component';
 import { JogadorService } from '../shared/services';
+import { TimerModule } from '../shared/components/timer/timer.module';
 
 @NgModule({
-    imports: [ 
-        CommonModule,
-        CabecalhoModule,
-        ModalModule,
-        FormsModule,
-    ],
-    declarations: [
-        QuizComponent,
-        CadastroJogadorComponent,
-        ListagemComponent
-    ],
-    exports: [ QuizComponent ],
-    providers: [ JogadorService ],
+  imports: [
+    CommonModule,
+    CabecalhoModule,
+    ModalModule,
+    FormsModule,
+    TimerModule
+  ],
+  declarations: [QuizComponent, CadastroJogadorComponent, ListagemComponent],
+  exports: [QuizComponent],
+  providers: [JogadorService]
 })
-export class QuizModule { }
+export class QuizModule {}

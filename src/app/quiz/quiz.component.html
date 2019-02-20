@@ -1,7 +1,5 @@
 <cabecalho>
-    <div>
-        <span class="time">{{time}}</span>
-    </div>
+    <timer [start]="startTimer" [duration]="durationGame" (finalize)="finalizarQuiz()"></timer>
 </cabecalho>
 <div class="loader" *ngIf="loading"></div>
 
