@@ -1,0 +1,10 @@
+:host {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quiz-personagem {
+    width: 19%;
+    margin-left: 1%;
+    margin-bottom: 3%;
+} 
