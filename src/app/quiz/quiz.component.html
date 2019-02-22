@@ -23,7 +23,11 @@
     (change)="pageChange($event)"
   ></pagination>
   <modal *ngIf="mostrarDica" (fechar)="fecharModal($event)" titulo="Details">
-    <img src="./assets/images/personagens/{{pessoaDica.id}}.jpg" alt="Personagem" class="details-img" />
+    <img
+      src="./assets/images/personagens/{{ pessoaDica.id }}.jpg"
+      alt="Personagem"
+      class="details-img"
+    />
     <p><strong>Specie:</strong> {{ pessoaDica.especies }}</p>
     <p><strong>Height:</strong> {{ pessoaDica.altura }}</p>
     <p><strong>Hair:</strong> {{ pessoaDica.corCabelo }}</p>
@@ -32,7 +36,13 @@
     <p><strong>Vehicles:</strong> {{ pessoaDica.veiculos }}</p>
   </modal>
 
-  <!-- <modal *ngIf="mostrarDadosJogador" (fechar)="fecharModal($event)" titulo="Quiz finalizado!">
-        <cadastro-jogador [pontuacao]="total" (salvar)="salvarJogador($event)"></cadastro-jogador>
-    </modal> -->
+  <modal
+    *ngIf="mostrarDadosJogador"
+    (fechar)="fecharModal($event)"
+    titulo="Quiz finalizado!"
+  >
+    <cadastro-jogador
+      [pontuacao]="total"
+    ></cadastro-jogador>
+  </modal>
 </section>

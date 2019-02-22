@@ -2,8 +2,7 @@ import { IPersonagem } from './../models';
 
 import { map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable, forkJoin, combineLatest, of, merge } from 'rxjs';
-import 'rxjs/add/observable/from';
+import { Observable, forkJoin, combineLatest} from 'rxjs';
 import { LocalStorageService } from './localStorage.service';
 import { HttpClient } from '@angular/common/http';
 

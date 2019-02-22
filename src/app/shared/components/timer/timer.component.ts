@@ -7,8 +7,7 @@ import {
   OnDestroy,
   OnChanges
 } from '@angular/core';
-import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
-import { Subscription } from 'rxjs';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'timer',
@@ -22,7 +21,7 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
   start = false;
 
   @Output()
-  finish = new EventEmitter();
+  finalize = new EventEmitter();
 
   time: string;
   interval: Subscription;
@@ -45,12 +44,12 @@ export class TimerComponent implements OnInit, OnDestroy, OnChanges {
 
   private iniciarContagem() {
     let leftTime = this.duration;
-    this.interval = IntervalObservable.create(1000).subscribe(x => {
+    this.interval = interval(1000).subscribe(() => {
       leftTime -= 1;
       this.setTime(leftTime);
       if (leftTime < 1) {
         this.interval.unsubscribe();
-        this.finish.emit();
+        this.finalize.emit();
       }
     });
   }
