@@ -8,82 +8,64 @@ import { IPersonagem } from '../shared/models';
   styleUrls: ['./quiz.component.css']
 })
 export class QuizComponent implements OnInit {
-  private service: PersonagemService;
   private todosPersonagens: IPersonagem[] = [];
-  paginaAtual: number = 1;
-  paginaInicio: number = 0;
-  paginaFim: number = 10;
   personagens: IPersonagem[] = [];
   pessoaDica: IPersonagem;
-  mostrarDica: boolean = false;
-  mostrarDadosJogador: boolean = false;
+  mostrarDica = false;
+  mostrarDadosJogador = false;
   total = 0;
-  finalizado: boolean = false;
-  loading: boolean = false;
-  durationGame = 120;
+  finalizado = false;
+  loading = false;
+  durationGame = 30;
 
-  currentPage = 0;
+  paginaAtual = 1;
 
-  constructor(service: PersonagemService) {
-    this.service = service;
-  }
+  constructor(private service: PersonagemService) {}
 
   get startTimer() {
     return this.todosPersonagens.length > 0;
   }
 
-  async ngOnInit() {
-    await this.buscarPersonagens();
+  ngOnInit() {
+    this.loading = true;
+    this.service.getAll([1, 2, 3]).subscribe(personagens => {
+      this.todosPersonagens = personagens;
+      this.loading = false;
+      this.mudarPagina();
+      console.log(this.todosPersonagens);
+    });
   }
 
   finalizarQuiz() {
-    this.total = 0;
-    let pessoas = this.todosPersonagens.filter(
-      personagem => personagem.estaRespondido
-    );
-    pessoas.map(a => (this.total += a.pontos));
-    this.mostrarDadosJogador = true;
-    this.finalizado = true;
+    this.total = this.todosPersonagens
+      .filter(per => per.estaRespondido)
+      .reduce((aggr, { usouDica }) => aggr + (usouDica ? 5 : 10), 0);
+
+    console.log(this.total);
+    // pessoas.map(a => (this.total += a.pontos));
+    // this.mostrarDadosJogador = true;
+    // this.finalizado = true;
   }
-
-  // goToPrev() {
-  //   this.paginaAtual -= 1;
-  //   this.mostrarPersonagens();
-  // }
-
-  // goToNext() {
-  //   this.paginaAtual += 1;
-
-  //   if (this.todosPersonagens.length <= this.paginaAtual * 10)
-  //     this.buscarPersonagens();
-  //   else this.mostrarPersonagens();
-  // }
 
   pageChange(page: number) {
-    this.currentPage = page;
+    this.paginaAtual = page;
+    this.mudarPagina();
   }
 
-  async buscarPersonagens() {
-    this.loading = true;
-    this.personagens = await this.service.lista(this.paginaAtual);
-    this.todosPersonagens = [].concat(this.todosPersonagens, this.personagens);
-    this.loading = false;
+  mudarPagina() {
+    const inicio = (this.paginaAtual - 1) * 10;
+    const fim = this.paginaAtual * 10;
+    this.personagens = this.todosPersonagens.slice(inicio, fim);
   }
 
-  mostrarPersonagens() {
-    let indiceFinal = this.paginaAtual * 10;
-    let indiceInicio = indiceFinal - 10;
-
-    this.personagens = this.todosPersonagens.slice(indiceInicio, indiceFinal);
+  responder(personagem: IPersonagem) {
+    this.atualizarPersonagens(personagem);
   }
 
-  async abrirDica(pessoa: IPersonagem) {
-    this.loading = true;
-    await this.buscarComplementos(pessoa);
-    this.pessoaDica = pessoa;
+  abrirDica(personagem: IPersonagem) {
+    this.atualizarPersonagens(personagem);
+    this.pessoaDica = personagem;
     this.mostrarDica = true;
-    this.pessoaDica.usouDica = true;
-    this.loading = false;
   }
 
   fecharModal(value: boolean) {
@@ -91,18 +73,8 @@ export class QuizComponent implements OnInit {
     this.mostrarDadosJogador = value;
   }
 
-  private async buscarComplementos(pessoa: IPersonagem) {
-    return new Promise<boolean>(async resolve => {
-      const especies = this.service.complementos(pessoa.species, 'name');
-      const planeta = this.service.complementoNome(pessoa.homeworld, 'name');
-      const filmes = this.service.complementos(pessoa.films, 'title');
-      const veiculos = this.service.complementos(pessoa.vehicles, 'name');
-
-      pessoa.especies = await especies;
-      pessoa.planeta = await planeta;
-      pessoa.filmes = await filmes;
-      pessoa.veiculos = await veiculos;
-      resolve(true);
-    });
+  private atualizarPersonagens(personagem: IPersonagem) {
+    const index = this.todosPersonagens.findIndex(p => p.id === personagem.id);
+    this.todosPersonagens.splice(index, 1, personagem);
   }
 }

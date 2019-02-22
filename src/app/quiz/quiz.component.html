@@ -1,27 +1,38 @@
 <cabecalho>
-    <timer
-        [start]="startTimer"
-        [duration]="durationGame"
-        (finalize)="finalizarQuiz()"
-    ></timer>
+  <timer
+    [start]="startTimer"
+    [duration]="durationGame"
+    (finalize)="finalizarQuiz()"
+  ></timer>
 </cabecalho>
 <div class="loader" *ngIf="loading"></div>
 
 <section class="container d-flex flex-wrap p-5">
-    <listagem *ngFor="let pessoa of personagens; let i = index" class="quiz-personagem" 
-    [pessoa]="pessoa" (eventoDica)="abrirDica($event)" [finalizado]="finalizado"></listagem>
-    <pagination [page]="currentPage" min="1" max="3" (change)="pageChange($event)"></pagination>
-    <!-- <modal *ngIf="mostrarDica" (fechar)="fecharModal($event)" titulo="Details">
-        <img [src]="pessoaDica.image" alt="Personagem" class="details-img">
-        <p><strong>Specie:</strong> {{pessoaDica.especies}}</p>
-        <p><strong>Height:</strong> {{pessoaDica.height}}</p>
-        <p><strong>Hair:</strong> {{pessoaDica.hair_color}}</p>
-        <p><strong>Planet:</strong> {{pessoaDica.planeta}}</p>
-        <p><strong>Movies:</strong> {{pessoaDica.filmes}}</p>
-        <p><strong>Vehicles:</strong> {{pessoaDica.veiculos}}</p>
-    </modal> -->
+  <listagem
+    [personagens]="personagens"
+    class="quiz-personagem"
+    (eventoDica)="abrirDica($event)"
+    (answer)="responder($event)"
+    (helper)="abrirDica($event)"
+    [disabled]="finalizado"
+  ></listagem>
+  <pagination
+    [page]="paginaAtual"
+    min="1"
+    max="3"
+    (change)="pageChange($event)"
+  ></pagination>
+  <modal *ngIf="mostrarDica" (fechar)="fecharModal($event)" titulo="Details">
+    <img src="./assets/images/personagens/{{pessoaDica.id}}.jpg" alt="Personagem" class="details-img" />
+    <p><strong>Specie:</strong> {{ pessoaDica.especies }}</p>
+    <p><strong>Height:</strong> {{ pessoaDica.altura }}</p>
+    <p><strong>Hair:</strong> {{ pessoaDica.corCabelo }}</p>
+    <p><strong>Planet:</strong> {{ pessoaDica.planeta }}</p>
+    <p><strong>Movies:</strong> {{ pessoaDica.filmes }}</p>
+    <p><strong>Vehicles:</strong> {{ pessoaDica.veiculos }}</p>
+  </modal>
 
-    <!-- <modal *ngIf="mostrarDadosJogador" (fechar)="fecharModal($event)" titulo="Quiz finalizado!">
+  <!-- <modal *ngIf="mostrarDadosJogador" (fechar)="fecharModal($event)" titulo="Quiz finalizado!">
         <cadastro-jogador [pontuacao]="total" (salvar)="salvarJogador($event)"></cadastro-jogador>
     </modal> -->
 </section>

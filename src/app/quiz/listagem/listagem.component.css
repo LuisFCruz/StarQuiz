@@ -1,39 +1,10 @@
-.card-img {
-    position: relative;
-}
-
-.mask-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+:host {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(140, 150, 139, 0.6);
+    flex-wrap: wrap;
 }
 
-.mask-text {
-    color: #07e656;
-    font-weight: 700;
-    font-size: 2.3rem;
-}
-
-.mask-text.erro {
-    color: #e63a07;
-}
-
-.card-img-top {
-    height: 170px;
-}
-
-.card-body {
-    display: flex;
-    justify-content: space-between;
-}
-
-.card-body button {
-    width: 45%;
-    height: 38px;
-}
+.quiz-personagem {
+    width: 19%;
+    margin-left: 1%;
+    margin-bottom: 3%;
+} 

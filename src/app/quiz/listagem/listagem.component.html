@@ -1,26 +1,8 @@
-<div class="card">
-    <div class="card-img">
-        <img class="card-img-top" [src]="pessoa.image">
-        <div class="mask-background" *ngIf="mensagem.length && !pessoa.estaRespondido">
-            <span class="mask-text erro">{{mensagem}}</span>
-        </div>
-        <div class="mask-background" *ngIf="pessoa.estaRespondido">
-            <span class="mask-text">Certo</span>
-        </div>
-    </div>
-    <div class="card-body">
-        <button type="button" class="btn btn-primary" title="Responder" 
-            (click)="pessoa.mostrarResponder = !pessoa.mostrarResponder"
-            [disabled]="pessoa.estaRespondido || finalizado">?</button>
-        <button type="button" class="btn btn-info" title="Dicas" 
-            [disabled]="pessoa.estaRespondido || finalizado" (click)="verDica()">...</button>
-    </div>
-    <div class="input-group p-1" *ngIf="pessoa.mostrarResponder && !pessoa.estaRespondido">
-        <input type="text" class="form-control" placeholder="Resposta" 
-        aria-label="Resposta" [(ngModel)]="nome" [disabled]="finalizado">
-        <div class="input-group-append">
-            <button class="btn btn-outline-success" type="button" (click)="responder()"
-            [disabled]="pessoa.estaRespondido || finalizado" title="Confirmar"> > </button>
-        </div>
-    </div>
-</div>
+<ng-container *ngFor="let pessoa of personagens">
+  <personagem
+    [pessoa]="pessoa"
+    class="quiz-personagem"
+    (confirm)="responder($event)"
+    (helper)="verDica($event)"
+  ></personagem>
+</ng-container>

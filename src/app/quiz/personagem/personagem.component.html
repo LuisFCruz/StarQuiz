@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-img">
+    <img class="card-img-top" [src]="imagem" />
+    <div class="mask-background" *ngIf="pessoa.estaRespondido || mensagem !== null">
+      <span
+        class="mask-text erro"
+        [ngClass]="{ erro: !pessoa.estaRespondido && mensagem !== null }"
+        >{{ mensagem }}</span
+      >
+    </div>
+  </div>
+  <div class="card-body">
+    <ng-container *ngIf="!responder || pessoa.estaRespondido">
+      <button
+        type="button"
+        class="btn btn-primary"
+        title="Responder"
+        (click)="mostrarResponder()"
+        [disabled]="pessoa.estaRespondido || finalizado"
+      >
+        ?
+      </button>
+      <button
+        type="button"
+        class="btn btn-info"
+        title="Dicas"
+        [disabled]="pessoa.estaRespondido || finalizado"
+        (click)="mostrarDica()"
+      >
+        ...
+      </button>
+    </ng-container>
+    <ng-container *ngIf="responder && !pessoa.estaRespondido">
+      <field-text
+        label="Responder"
+        (confirm)="confirmarResposta($event)"
+      ></field-text>
+    </ng-container>
+  </div>
+</div>

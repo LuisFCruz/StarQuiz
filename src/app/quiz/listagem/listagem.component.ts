@@ -7,26 +7,28 @@ import { IPersonagem } from '../../shared/models';
   styleUrls: ['./listagem.component.css']
 })
 export class ListagemComponent {
-  @Input() pessoa: IPersonagem;
-  @Input() finalizado: boolean;
-  @Output() eventoDica = new EventEmitter<IPersonagem>();
+  @Input()
+  pessoa: IPersonagem;
+  @Input()
+  personagens: IPersonagem[];
+  @Input()
+  disabled: boolean;
+
+  @Output()
+  helper = new EventEmitter<IPersonagem>();
+
+  @Output()
+  answer = new EventEmitter<IPersonagem>();
+
   nome = '';
   mensagem = '';
   usouDica = false;
 
-  responder() {
-    if (this.nome.toLowerCase() == this.pessoa.name.toLowerCase()) {
-      this.pessoa.pontos = this.usouDica ? 5 : 10;
-      this.pessoa.estaRespondido = true;
-    } else {
-      this.mensagem = 'Errado';
-      this.nome = '';
-      setTimeout(() => (this.mensagem = ''), 1000);
-    }
+  responder(personagem: IPersonagem) {
+    this.answer.emit(personagem);
   }
 
-  verDica() {
-    this.eventoDica.emit(this.pessoa);
-    this.usouDica = true;
+  verDica(personagem: IPersonagem) {
+    this.helper.emit(personagem);
   }
 }

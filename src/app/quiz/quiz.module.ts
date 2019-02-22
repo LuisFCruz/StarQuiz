@@ -11,6 +11,8 @@ import { QuizComponent } from './quiz.component';
 import { JogadorService } from '../shared/services';
 import { TimerModule } from '../shared/components/timer/timer.module';
 import { PaginationModule } from '../shared/components/pagination/pagination.module';
+import { PersonagemComponent } from './personagem/personagem.component';
+import { FieldTextModule } from '../shared/components/field-text/field-text.module';
 
 @NgModule({
   imports: [
@@ -20,8 +22,14 @@ import { PaginationModule } from '../shared/components/pagination/pagination.mod
     FormsModule,
     TimerModule,
     PaginationModule,
+    FieldTextModule
   ],
-  declarations: [QuizComponent, CadastroJogadorComponent, ListagemComponent],
+  declarations: [
+    QuizComponent,
+    CadastroJogadorComponent,
+    ListagemComponent,
+    PersonagemComponent
+  ],
   exports: [QuizComponent],
   providers: [JogadorService]
 })
