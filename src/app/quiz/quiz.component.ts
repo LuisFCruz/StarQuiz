@@ -16,7 +16,7 @@ export class QuizComponent implements OnInit {
   total = 0;
   finalizado = false;
   loading = false;
-  durationGame = 30;
+  durationGame = 120;
 
   paginaAtual = 1;
 
@@ -62,6 +62,7 @@ export class QuizComponent implements OnInit {
   }
 
   finalizarQuiz() {
+    this.fecharModal(false);
     this.total = this.todosPersonagens
       .filter(per => per.estaRespondido)
       .reduce((aggr, { usouDica }) => aggr + (usouDica ? 5 : 10), 0);

@@ -1,6 +1,7 @@
 <ng-container *ngFor="let pessoa of personagens">
   <personagem
     [pessoa]="pessoa"
+    [disabled]="disabled"
     class="quiz-personagem"
     (confirm)="responder($event)"
     (helper)="verDica($event)"

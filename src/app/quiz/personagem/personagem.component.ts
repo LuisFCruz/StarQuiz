@@ -10,6 +10,9 @@ export class PersonagemComponent implements OnInit {
   @Input()
   pessoa: IPersonagem;
 
+  @Input()
+  disabled = false;
+
   @Output()
   confirm = new EventEmitter<IPersonagem>();
 
